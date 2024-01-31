@@ -6,8 +6,8 @@ import org.springframework.stereotype.Component;
 @Component
 public class KafkaRoute extends RouteBuilder {
     @Override
-    public void configure() throws Exception {
-        from("kafka:test-in")
-                .to("kafka:test-out");
+    public void configure() {
+        from("kafka:{{app.kafka.topic-in}}")
+                .to("kafka:{{app.kafka.topic-out}}");
     }
 }

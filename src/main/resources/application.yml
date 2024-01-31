@@ -1,6 +1,11 @@
 server:
   port: 9090
 
+app:
+  kafka:
+    topic-in: "test-in"
+    topic-out: "test-out"
+
 camel:
   component:
     kafka:
