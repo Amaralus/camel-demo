@@ -1,1 +1,10 @@
+server:
+  port: 9090
 
+camel:
+  component:
+    kafka:
+      brokers: "localhost:9094"
+      group-id: "camel-demo"
+  springboot:
+    main-run-controller: true
