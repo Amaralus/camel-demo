@@ -6,6 +6,14 @@ app:
     topic-in: "test-in"
     topic-out: "test-out"
 
+spring:
+  datasource:
+    name: "dataSource"
+    generate-unique-name: false
+    url: "jdbc:postgresql://localhost:5432/camel_demo"
+    username: "postgres"
+    password: "postgres"
+
 camel:
   component:
     kafka:
