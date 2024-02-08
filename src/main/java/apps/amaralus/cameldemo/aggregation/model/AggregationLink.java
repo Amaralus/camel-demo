@@ -2,8 +2,5 @@ package apps.amaralus.cameldemo.aggregation.model;
 
 import java.util.UUID;
 
-public record OutputLink(
-        long inputId,
-        UUID aggregateId
-) {
+public record AggregationLink(Long payloadId, UUID aggregationId) {
 }

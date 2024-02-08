@@ -5,6 +5,7 @@ app:
   kafka:
     topic-in: "test-in"
     topic-out: "test-out"
+    topic-link: "test-link-out"
 
 spring:
   datasource:

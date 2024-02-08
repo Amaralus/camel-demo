@@ -32,6 +32,7 @@
     </dependencyManagement>
 
     <dependencies>
+        <!-- Spring -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
@@ -45,6 +46,7 @@
             <artifactId>spring-boot-starter-jdbc</artifactId>
         </dependency>
 
+        <!-- Camel -->
         <dependency>
             <groupId>org.apache.camel.springboot</groupId>
             <artifactId>camel-spring-boot-starter</artifactId>
@@ -66,6 +68,7 @@
             <artifactId>camel-spring-jdbc-starter</artifactId>
         </dependency>
 
+        <!-- Other -->
         <dependency>
             <groupId>org.postgresql</groupId>
             <artifactId>postgresql</artifactId>
