@@ -2,13 +2,10 @@ package apps.amaralus.cameldemo.aggregation;
 
 import apps.amaralus.cameldemo.aggregation.model.AggregationLink;
 import apps.amaralus.cameldemo.aggregation.model.InputMessage;
-import lombok.RequiredArgsConstructor;
 import org.apache.camel.builder.RouteBuilder;
-import org.apache.camel.component.jackson.JacksonDataFormat;
 import org.springframework.stereotype.Component;
 
 @Component
-@RequiredArgsConstructor
 public class AggregationRoute extends RouteBuilder {
     private static final String QUERY = """
             insert into demo.aggregated_data (iteration, group_field_1, group_field_2, aggregation_result)
@@ -27,16 +24,18 @@ public class AggregationRoute extends RouteBuilder {
     public void configure() {
         from("kafka:{{app.kafka.topic-in}}")
                 .transacted("serializablePolicy")
-                .unmarshal(new JacksonDataFormat(InputMessage.class))
+                .unmarshal()
+                .json(InputMessage.class)
                 .to("bean-validator://x")
-                .split(simple("${body.payload()}"))
+                .split(body().method("payload"))
                 .streaming()
-                .filter(simple("${body.type()} == 'A'"))
-                .setHeader("payloadId", simple("${body.id()}"))
+                .filter(body().method("type").isEqualTo("A"))
+                .setHeader("payloadId", body().method("id"))
                 .setBody(simple(QUERY))
                 .to("jdbc:dataSource?transacted=true&outputType=SelectOne")
                 .bean(LinkTransformer.class, "transform")
-                .marshal(new JacksonDataFormat(AggregationLink.class))
+                .marshal()
+                .json(AggregationLink.class)
                 .to("kafka:{{app.kafka.topic-link}}");
     }
 }

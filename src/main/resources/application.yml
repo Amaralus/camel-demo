@@ -2,10 +2,12 @@ server:
   port: 9090
 
 app:
+  lockExpireMillis: 60000
   kafka:
     topic-in: "test-in"
     topic-out: "test-out"
     topic-link: "test-link-out"
+    topic-trigger: "test-trigger"
 
 spring:
   datasource:
@@ -14,6 +16,8 @@ spring:
     url: "jdbc:postgresql://localhost:5432/camel_demo"
     username: "postgres"
     password: "postgres"
+  application:
+    name: "camel-demo"
 
 camel:
   component:
