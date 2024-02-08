@@ -27,7 +27,7 @@ public class AggregationCompletionRoute extends RouteBuilder {
             """;
 
     @Override
-    public void configure() throws Exception {
+    public void configure() {
         from("direct:aggregation-completion")
             .transacted("serializablePolicy")
                 .bean(LockService.class, "tryLock")

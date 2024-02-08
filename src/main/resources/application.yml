@@ -2,7 +2,7 @@ server:
   port: 9090
 
 app:
-  lockExpireMillis: 60000
+  lockDurationMinutes: 1
   kafka:
     topic-in: "test-in"
     topic-out: "test-out"
