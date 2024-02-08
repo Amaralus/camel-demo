@@ -4,11 +4,10 @@ import org.apache.camel.builder.RouteBuilder;
 import org.springframework.stereotype.Component;
 
 @Component
-public class KafkaTriggerRoute extends RouteBuilder {
-
+public class CronTriggerRoute extends RouteBuilder {
     @Override
     public void configure() {
-        from("kafka:{{app.kafka.topic-trigger}}")
+        from("cron:tab?schedule=* 0 * * * *")
             .to("direct:aggregation-completion");
     }
 }
