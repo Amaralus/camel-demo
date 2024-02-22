@@ -18,11 +18,10 @@ public class LockConfig {
         var defaultLockRepository = new DefaultLockRepository(dataSource, applicationName);
         defaultLockRepository.setPrefix("demo.int_");
         defaultLockRepository.setTimeToLive((int) Duration.ofMinutes(lockDurationMinutes).toMillis());
-        defaultLockRepository.setUpdateQuery("""
-                UPDATE %sLOCK
-                SET CLIENT_ID=?, CREATED_DATE=?
-                WHERE REGION=? AND LOCK_KEY=? AND CLIENT_ID=? AND CREATED_DATE<?
-                """);
+//        defaultLockRepository.setUpdateQuery(
+//                "UPDATE %sLOCK\n" +
+//                "SET CLIENT_ID=?, CREATED_DATE=?\n" +
+//                "WHERE REGION=? AND LOCK_KEY=? AND CLIENT_ID=? AND CREATED_DATE<?\n");
         return defaultLockRepository;
     }
 }

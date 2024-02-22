@@ -1,14 +1,22 @@
 package apps.amaralus.cameldemo.aggregation.model;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
-import jakarta.validation.constraints.Positive;
+import lombok.Data;
 
-public record PayloadData(
-        @NotNull @Positive Long id,
-        @NotBlank String type,
-        @NotNull Integer number,
-        @NotBlank String groupField1,
-        @NotNull Long groupField2
-) {
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Positive;
+
+@Data
+public class PayloadData {
+        @NotNull
+        @Positive
+        private Long id;
+        @NotBlank
+        private String type;
+        @NotNull
+        private Integer number;
+        @NotBlank
+        private String groupField1;
+        @NotNull
+        private Long groupField2;
 }

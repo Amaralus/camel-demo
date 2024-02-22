@@ -8,23 +8,20 @@ import org.springframework.stereotype.Component;
 @Component
 public class AggregationCompletionRoute extends RouteBuilder {
 
-    private static final String NEXT_ITERATION_QUERY = """
-            update demo.iteration_counter
-            set iteration = nextval('demo.iteration_seq')
-            where id = 1
-            """;
-    private static final String FIND_AGGREGATED_DATA = """
-            select *
-            from demo.aggregated_data
-            where iteration < (select iteration from demo.iteration_counter where id = 1)
-              and aggregation_completed = false
-            """;
+    private static final String NEXT_ITERATION_QUERY =
+            "update demo.iteration_counter\n" +
+            "set iteration = nextval('demo.iteration_seq')\n" +
+            "where id = 1\n";
+    private static final String FIND_AGGREGATED_DATA =
+            "select *\n" +
+            "from demo.aggregated_data\n" +
+            "where iteration < (select iteration from demo.iteration_counter where id = 1)\n" +
+            "  and aggregation_completed = false\n";
 
-    private static final String CONFIRM_AGGREGATION_QUERY = """
-            update demo.aggregated_data
-            set aggregation_completed = true
-            where id = '${body.id()}'
-            """;
+    private static final String CONFIRM_AGGREGATION_QUERY =
+            "update demo.aggregated_data\n" +
+            "set aggregation_completed = true\n" +
+            "where id = '${body.getId()}'\n";
 
     @Override
     public void configure() {

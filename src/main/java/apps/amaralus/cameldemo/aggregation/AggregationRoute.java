@@ -7,18 +7,17 @@ import org.springframework.stereotype.Component;
 
 @Component
 public class AggregationRoute extends RouteBuilder {
-    private static final String QUERY = """
-            insert into demo.aggregated_data (iteration, group_field_1, group_field_2, aggregation_result)
-            values (
-            (select iteration from demo.iteration_counter where id = 1),
-            '${body.groupField1()}',
-            ${body.groupField2()},
-            ${body.number()})
-            on conflict on constraint iteration_group do update
-                set aggregation_result = demo.aggregated_data.aggregation_result + ${body.number()},
-                    updated_at         = now()
-            returning id;
-            """;
+    private static final String QUERY =
+            "insert into demo.aggregated_data (iteration, group_field_1, group_field_2, aggregation_result)\n" +
+            "values (\n" +
+            "(select iteration from demo.iteration_counter where id = 1),\n" +
+            "'${body.getGroupField1()}',\n" +
+            "${body.getGroupField2()},\n" +
+            "${body.getNumber()})\n" +
+            "on conflict on constraint iteration_group do update\n" +
+            "    set aggregation_result = demo.aggregated_data.aggregation_result + ${body.getNumber()},\n" +
+            "        updated_at         = now()\n" +
+            "returning id;\n";
 
     @Override
     public void configure() {
@@ -27,10 +26,10 @@ public class AggregationRoute extends RouteBuilder {
                 .unmarshal()
                 .json(InputMessage.class)
                 .to("bean-validator://x")
-                .split(body().method("payload"))
+                .split(body().method("getPayload"))
                 .streaming()
-                .filter(body().method("type").isEqualTo("A"))
-                .setHeader("payloadId", body().method("id"))
+                .filter(body().method("getType").isEqualTo("A"))
+                .setHeader("payloadId", body().method("getId"))
                 .setBody(simple(QUERY))
                 .to("jdbc:dataSource?transacted=true&outputType=SelectOne")
                 .bean(LinkTransformer.class, "transform")
