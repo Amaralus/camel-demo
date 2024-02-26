@@ -1,6 +1,7 @@
 package apps.amaralus.cameldemo.iteration;
 
 import apps.amaralus.cameldemo.iteration.lock.LockService;
+import apps.amaralus.cameldemo.iteration.model.AggregatedData;
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.processor.aggregate.GroupedBodyAggregationStrategy;
 import org.springframework.stereotype.Component;
@@ -37,6 +38,8 @@ public class AggregationCompletionRoute extends RouteBuilder {
                 .method("size"))
             .split(body())
                 .bean(AggregatedDataMapper.class, "map")
+                .marshal()
+                .json(AggregatedData.class)
                 .to("kafka:{{app.kafka.topic-out}}")
                 .setBody(simple(CONFIRM_AGGREGATION_QUERY))
                 .to("jdbc:dataSource?transacted=true")

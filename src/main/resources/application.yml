@@ -2,6 +2,8 @@ server:
   port: 9090
 
 app:
+  database:
+    schema-name: "demo"
   lockDurationMinutes: 1
   kafka:
     topic-in: "test-in"
