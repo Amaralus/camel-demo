@@ -1,5 +1,6 @@
 package apps.amaralus.cameldemo.iteration.model;
 
+import apps.amaralus.cameldemo.aggregation.model.PayloadData;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 
@@ -12,4 +13,11 @@ public class AggregatedData {
         private String groupField1;
         private Long groupField2;
         private Integer aggregationResult;
+
+    public AggregatedData(UUID id, PayloadData payloadData) {
+        this.id = id;
+        groupField1 = payloadData.getGroupField1();
+        groupField2 = payloadData.getGroupField2();
+        aggregationResult = payloadData.getNumber();
+    }
 }

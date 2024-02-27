@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class CronTriggerRoute extends RouteBuilder {
     @Override
     public void configure() {
-        from("cron:tab?schedule=* 0 * * * *")
+        from("cron:tab?schedule={{app.aggregation-completion.cron-expression}}")
             .to("direct:aggregation-completion");
     }
 }

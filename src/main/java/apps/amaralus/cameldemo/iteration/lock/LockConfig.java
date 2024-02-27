@@ -16,7 +16,7 @@ public class LockConfig {
     @Bean
     public LockRepository customLockRepository(ApplicationContext applicationContext,
                                                DataSource dataSource,
-                                               @Value("${app.lockDurationMinutes}") int lockDurationMinutes,
+                                               @Value("${app.aggregation-completion.lock-duration-minutes}") int lockDurationMinutes,
                                                @Value("${app.database.schema-name}") String schemaName) {
         var customLockRepository = new CustomLockRepository(dataSource, applicationContext.getId());
         customLockRepository.setPrefix(schemaName + "." + DefaultLockRepository.DEFAULT_TABLE_PREFIX);

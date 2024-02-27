@@ -4,7 +4,10 @@ server:
 app:
   database:
     schema-name: "demo"
-  lockDurationMinutes: 1
+  aggregation-completion:
+    lock-duration-minutes: 1
+    post-iteration-delay-ms: 5000
+    cron-expression: "* 20 * * * *"
   kafka:
     topic-in: "test-in"
     topic-out: "test-out"

@@ -3,21 +3,21 @@
   "payload": [
     {
       "id": 456,
-      "type": "A",
+      "type": 1,
       "number": 11,
       "groupField1": "abc",
       "groupField2": 111
     },
     {
       "id": 789,
-      "type": "A",
+      "type": 2,
       "number": 33,
       "groupField1": "def",
       "groupField2": 111
     },
     {
       "id": 111,
-      "type": "B",
+      "type": 0,
       "number": 222,
       "groupField1": "xyz",
       "groupField2": 333
