@@ -1,6 +1,6 @@
-package apps.amaralus.cameldemo.iteration;
+package apps.amaralus.cameldemo.completion;
 
-import apps.amaralus.cameldemo.iteration.model.AggregatedData;
+import apps.amaralus.cameldemo.completion.model.AggregatedData;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;

@@ -10,8 +10,7 @@ public class AggregationRoute extends RouteBuilder {
 
     @Override
     public void configure() {
-        from("kafka:{{app.kafka.topic-in}}")
-                .transacted("serializablePolicy")
+        from("kafka:{{app.kafka.topic-in}}?autoCommitEnable=false&allowManualCommit=true&breakOnFirstError=true")
                 .unmarshal()
                 .json(InputMessage.class)
                 .bean(AggregationService.class, "aggregate")

@@ -1,4 +1,4 @@
-package apps.amaralus.cameldemo.iteration.lock;
+package apps.amaralus.cameldemo.completion.lock;
 
 import org.springframework.dao.DuplicateKeyException;
 import org.springframework.integration.jdbc.lock.DefaultLockRepository;

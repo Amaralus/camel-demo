@@ -1,4 +1,4 @@
-package apps.amaralus.cameldemo.iteration.model;
+package apps.amaralus.cameldemo.completion.model;
 
 import apps.amaralus.cameldemo.aggregation.model.PayloadData;
 import lombok.AllArgsConstructor;

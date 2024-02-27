@@ -1,4 +1,4 @@
-package apps.amaralus.cameldemo.iteration;
+package apps.amaralus.cameldemo.completion;
 
 import org.apache.camel.builder.RouteBuilder;
 import org.apache.camel.model.dataformat.JsonLibrary;
